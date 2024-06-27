@@ -8,6 +8,7 @@ output:
     number_sections: no
     toc: yes
   html_document:
+    encoding : "utf-8"
     df_print: paged
     toc: yes
   pdf_document:
@@ -22,12 +23,22 @@ header-includes:
 - \usepackage(mathtools)
 ---
 
+```{r setup, include=FALSE}
+# Required packages
+packages <- c("magrittr", "gridExtra", "grid", "latex2exp", "MASS", "knitr", "shiny")
+# Install necessary packages if not installed yet
+if (any(!requireNamespace(packages, quietly = TRUE))) {
+  install.packages(packages, dependencies = TRUE)
+}
+# Load necessary packages
+lapply(packages, require, character.only = TRUE)
+```
+
 ```{r global_options, echo=FALSE}
 knitr::opts_chunk$set(fig.align = 'center',fig.pos = 'h')
-library(magrittr) #pour utiliser l'opérateur pipe %>%
+library(magrittr)
 library(gridExtra)
 library(grid)
-#install.packages('latex2exp')
 library(latex2exp)
 library(MASS)
 library(knitr)
